@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter/foundation.dart';
 import '../models/track_model.dart';
 
 class ApiService {
@@ -30,15 +31,20 @@ class ApiService {
       ),
     );
 
-    print("STATUS: ${response.statusCode}");
-    print("DATA: ${response.data}");
+    if (kDebugMode) {
+      print("STATUS: ${response.statusCode}");
+        print("DATA: ${response.data}");
+    }
+  
 
 
      final trackModel = TrackModel.fromJson(response.data);
 
   return trackModel.data ?? [];
   } catch (e) {
-    print("ERROR: $e");
+    if (kDebugMode) {
+      print("ERROR: $e");
+    }
     rethrow;
   }
 }
