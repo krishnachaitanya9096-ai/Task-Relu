@@ -70,14 +70,15 @@ class _LibraryScreenState extends State<LibraryScreen> {
                   controller: _controller,
                   itemCount: state.tracks.length,
                   itemBuilder: (context, index) {
-                    final TrackModel track =
+                    final Data track =
                         state.tracks[index];
 
                     return ListTile(
-                      title: Text(track.title),
-                      subtitle: Text(track.artist),
+                      title: Text(track.title ?? ""),
+                      subtitle:
+                          Text(track.artist?.name ?? ""),
                       trailing:
-                          Text(track.id.toString()),
+                          Text(track.id?.toString() ?? ""),
                       onTap: () {
                         Navigator.push(
                           context,

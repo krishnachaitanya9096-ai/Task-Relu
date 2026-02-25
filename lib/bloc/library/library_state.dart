@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import '../../models/track_model.dart';
 
 class LibraryState extends Equatable {
-  final List<TrackModel> tracks;
+  final List<Data> tracks;
   final bool isLoading;
   final bool hasReachedMax;
   final String? error;
@@ -15,7 +15,7 @@ class LibraryState extends Equatable {
   });
 
   LibraryState copyWith({
-    List<TrackModel>? tracks,
+    List<Data>? tracks,
     bool? isLoading,
     bool? hasReachedMax,
     String? error,

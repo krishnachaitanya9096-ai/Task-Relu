@@ -7,7 +7,7 @@ import '../models/track_model.dart';
 import '../services/api_service.dart';
 
 class DetailsScreen extends StatelessWidget {
-  final TrackModel track;
+  final Data track;
 
   const DetailsScreen({super.key, required this.track});
 
@@ -18,15 +18,15 @@ class DetailsScreen extends StatelessWidget {
           DetailsBloc(context.read<ApiService>())
             ..add(
               LoadDetails(
-                trackId: track.id,
-                title: track.title,
-                artist: track.artist,
-                album: track.album,
-                duration: track.duration,
+                trackId: track.id??0,
+                title: track.title??'',
+                artist: track.artist?.name??'',
+                album: track.album?.title??'',
+                duration: track.duration??0,
               ),
             ),
       child: Scaffold(
-        appBar: AppBar(title: Text(track.title)),
+        appBar: AppBar(title: Text(track.title??'')),
         body: BlocBuilder<DetailsBloc, DetailsState>(
           builder: (context, state) {
             if (state.error != null) {
